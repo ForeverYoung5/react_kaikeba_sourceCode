@@ -1,17 +1,36 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
+import ReactDOM from './kreact/react-dom';
+import Component from './kreact/component'
 import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
 
-ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('root')
+function FunctionComponent(props) {
+  return(
+    <div className='border'>
+      <p>函数组件-{props.name}</p>
+    </div>
+  )
+}
+class ClassComponent extends Component {
+  render(){
+    return(
+      <div className='border'>
+        <p>类组件-{this.props.name}</p>
+      </div>
+    )
+  }
+};
+
+let jsx = (
+  <div className='border'>
+    <h1>全站</h1>
+    <p>这里是段落</p>
+    <FunctionComponent name='function' />
+    <ClassComponent name='class' />
+  </div>
 );
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+ReactDOM.render(jsx, document.getElementById('root'));
+
+// 渲染原生标签节点 
+// 文本节点
+// 函数组件
+// 类组件
